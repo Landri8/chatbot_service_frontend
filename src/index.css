@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import "tailwindcss";
+
+body {
+    font-family: 'Manrope', sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+.swiperSliderTestimonial {
+    display: flex !important;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50%;
+    background-color: rgb(197, 197, 197);
+}
+
+.swiper-button-prev:after, .swiper-button-next:after {
+    color: black;
+    font-size: 13px !important;
+}
+
+.react-international-phone-input {
+    width: 100% !important;
+    outline: none !important;
+    border: none !important;
+    font-size: 16px !important;
+}
+
+.react-international-phone-country-selector-button {
+    border: none !important;
+}
+
+.loader {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #171717;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+.loader2 {
+    width: 16px;
+    height: 16px;
+    border: 2px solid white;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
+
+.active {
+    @apply bg-gray-100;
+}
+
+.ant-select:not(.ant-select-disabled):hover .ant-select-selector, .ant-select-selector {
+    border-color: #d9d9d9 !important;
+    box-shadow: none !important;
+}
