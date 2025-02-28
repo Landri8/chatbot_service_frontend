@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Template from "../../../components/Template";
 import ContactTypesComponent from "./ContactTypesComponent";
 import ContactAddressComponent from "./ContactAddressComponent";
@@ -12,8 +12,10 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import ResponseModel from "../../../models/response.model";
-import { sendMessageApi } from "../../../services/clientService";
+import { getVerficationCodeApi, sendMessageApi, verifyEmailApi } from "../../../services/clientService";
 import { httpResponseHandler } from "../../../utils/responseHandlerUtil";
+import { Modal } from "antd";
+import { Input  } from 'antd';
 
 const ContactFormComponent = () => {
   const {
@@ -21,27 +23,120 @@ const ContactFormComponent = () => {
     handleSubmit,
     formState: { isSubmitting, errors },
     setValue,
+    watch,
     reset
   } = useForm<MessageCreationFormData>({
     resolver: zodResolver(MessageCreationFormSchema),
   });
 
-  const onSubmit = async (data: MessageCreationFormData) => {
-    try {
-      const {data: responseData} : {data: ResponseModel} = await sendMessageApi(data);
-      console.log(responseData);
+  const [otpValue, setOtpValue] = useState("");
+  const [verified, setVerified] = useState<boolean>(false);
+  const [isLoadingOTP, setIsLoadingOTP] = useState<boolean>(false);
 
-      const sendMessageResponseData = httpResponseHandler(responseData);
-      reset();
-      setValue('phone', '+95 ');
-      toast.success(responseData.message);
-    } catch (error : Error | any) {
-      console.log(error)
-      toast.error(error.message);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  const emailWatcher = watch("email");
+
+  const onSubmit = async (data: MessageCreationFormData) => {
+    if (verified) {
+      try {
+        const {data: responseData} : {data: ResponseModel} = await sendMessageApi(data);
+        console.log(responseData);
+  
+        const sendMessageResponseData = httpResponseHandler(responseData);
+        reset();
+        setVerified(false);
+        handleCancel();
+        setValue('phone', '+95 ');
+        toast.success(responseData.message);
+      } catch (error : Error | any) {
+        console.log(error)
+        toast.error(error.message);
+      }
+    } else {
+      toast.error("Please verify your email first!");
     }
   };
 
+  const handleGetOTPCode = async () => {
+    setIsLoadingOTP(true);
+    try {
+      const {data: responseData} : {data: ResponseModel} = await getVerficationCodeApi({email: emailWatcher});
+      const getVerficationCodeResponseData = httpResponseHandler(responseData);
+
+      showModal();
+      toast.success("Verification code sent to your email");
+      setIsLoadingOTP(false);
+    } catch (e : Error | any) {
+      console.log(e);
+      setIsLoadingOTP(false);
+      toast.error(e.message || "Failed getting verification code");
+    }
+  };
+
+  const handleVerifyOTP = async () => {
+    try {
+      const {data: responseData} : {data: ResponseModel} = await verifyEmailApi({email: emailWatcher, otp: otpValue});
+      const verifyEmailResponseData = httpResponseHandler(responseData);
+
+      toast.success("Email verified successfully");
+      handleCancel();
+      setVerified(true);
+
+    } catch (e : Error | any) {
+      console.log(e);
+      clearInput();
+      toast.error(e.message || "Wrong OTP code");
+    }
+  }
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCancel = () => {
+    setOtpValue('');
+    clearInput();
+    setIsModalOpen(false);
+    setIsLoadingOTP(false);
+  };
+
+  const clearInput = () => {
+    const inputs = document.getElementsByClassName("ant-input") as HTMLCollectionOf<HTMLInputElement>;
+    console.log(inputs)
+    for (let i = 0; i < inputs.length; i++) {
+      inputs[i].value = "";
+    }
+  }
+
+  const onChange = (text: string) => {
+    setOtpValue(text); 
+  };
+
+  useEffect(() => {
+    setVerified(false);
+  }, [emailWatcher]);
+
   return (
+    <>
+    <Modal
+      title="" 
+      maskClosable={false}
+      open={isModalOpen} 
+      onOk={handleVerifyOTP} 
+      okButtonProps={{
+        style: {
+          backgroundColor: '#f59e0b'
+        }
+      }}
+      onCancel={handleCancel}>
+        <div className="py-4 flex flex-col items-center">
+          <h1 className="w-[70%] text-center font-semibold text-zinc-800 text-[20px]">We've just sent a verification code to your email.</h1>
+          <p className="w-[70%] text-center mb-6">Please enter the 6 digit code below</p>
+          <Input.OTP length={6} onChange={onChange} value={otpValue} />
+          <div className="mt-4 text-[12px]">Don't receive the code? <button className="text-[#f59e0b] cursor-pointer" onClick={() => clearInput()}>{isLoadingOTP ? 'Resending' : 'Resend'}</button></div>
+        </div>
+    </Modal>
     <Template classes="py-[100px]">
       <div className="flex flex-col md:flex-row items-start gap-16 lg:w-[80%] xl:w-[70%] mx-auto">
         <form className="flex-1 w-full" onSubmit={handleSubmit(onSubmit)}>
@@ -79,14 +174,26 @@ const ContactFormComponent = () => {
 
           <div className="w-[100%] my-3">
             <h4 className="text-[14px] mb-2 font-semibold">Email</h4>
-            <input
-              {...register("email")}
-              type="text"
-              className={`w-full py-2 px-4 rounded-[7px] outline-none border bg-white ${
-                errors.email ? "border-red-300 bg-red-50" : "border-gray-200"
-              }`}
-              placeholder="abc@example.com"
-            />
+            <div className="relative">
+              <input
+                {...register("email")}
+                type="text"
+                className={`w-full py-2 px-4 rounded-[7px] outline-none border bg-white ${
+                  errors.email ? "border-red-300 bg-red-50" : "border-gray-200"
+                }`}
+                placeholder="abc@example.com"
+              />
+              {
+                !verified 
+                ?
+                (emailWatcher !== '' && emailWatcher != null) ?
+                <button disabled={isLoadingOTP} type="button" onClick={handleGetOTPCode} className="text-[11px] disabled:cursor-not-allowed disabled:opacity-50 py-1 px-3 rounded-[5px] cursor-pointer bg-red-100 absolute top-1/2 right-4 -translate-y-1/2">{isLoadingOTP ? 'Verifying' : 'Verify'}</button>
+                :
+                null
+                :
+                <div className="text-[11px] py-1 px-3 rounded-[5px] bg-green-400 text-white absolute top-1/2 right-4 -translate-y-1/2">Verified</div>
+              }
+            </div>
             {errors.email && (
               <p className="text-xs text-red-400 mt-1">{errors.email.message}</p>
             )}
@@ -177,7 +284,8 @@ const ContactFormComponent = () => {
           <ContactAddressComponent />
         </div>
       </div>
-    </Template>
+    </Template> 
+    </>
   );
 };
 

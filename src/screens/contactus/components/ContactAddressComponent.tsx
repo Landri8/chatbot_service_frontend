@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 const ContactAddressComponent = () => {
   return (
@@ -12,4 +12,4 @@ const ContactAddressComponent = () => {
   )
 }
 
-export default ContactAddressComponent
+export default memo(ContactAddressComponent)
