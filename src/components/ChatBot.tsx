@@ -53,7 +53,6 @@ const ChatBot = () => {
     }
 
     useEffect(() => {
-        console.log(chatStore.chatList)
         if(queryRef.current) queryRef.current.focus()
     }, [isOpen])
 

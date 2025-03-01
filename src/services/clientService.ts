@@ -22,3 +22,7 @@ export const getBlogsApi = () => {
 export const getBlogDetailsApi = (id: string) => {
     return getRequest(`${baseUrl}/app/blogs/${id}`);
 }
+
+export const getFAQsApi = () => {
+    return getRequest(`${baseUrl}/app/faqs`);
+}
