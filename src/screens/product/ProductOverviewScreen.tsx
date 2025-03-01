@@ -7,11 +7,13 @@ import PlansDetailsComponent from './components/PlansDetailsComponent'
 import HowItWorksComponent from '../../components/HowItWorksComponent'
 import FAQComponent from '../../components/FAQComponent'
 import FooterComponent from '../../components/FooterComponent'
+import ChatBot from '../../components/ChatBot'
 
 const ProductOverviewScreen: React.FC = () => {
   return (
     <section>
         <NavBar />
+        <ChatBot />
         <ProductModelsComponent />
         <PricingComponent />
         <PricingComparisonComponent />

@@ -64,7 +64,6 @@ const ChatBot = () => {
                     <div className='px-4 py-4 flex items-center justify-end'>
                         <button title='Close Chat' className='w-[30px] aspect-square flex items-center justify-center text-[18px] hover:bg-[#ffffff59] cursor-pointer rounded-full' onClick={closeChat}><IoRemove /></button>
                     </div>
-                    {/* Message Container */}
                     <div ref={messageContainerRef} className='flex-1 px-4 py-2 overflow-y-auto flex flex-col'>
                         {
                             chatStore.chatList.map(({ role, text, hideInChat }, index) => (
@@ -96,7 +95,7 @@ const ChatBot = () => {
             {
                 !isOpen 
                 ?
-                <button onClick={openChat} type='button' title='Chat' className='w-[60px] aspect-square bg-white rounded-full flex cursor-pointer items-center justify-center fixed bottom-10 right-5 z-50 text-xl'><IoChatboxOutline /></button>
+                <button onClick={openChat} type='button' title='Chat' className='w-[60px] shadow-sm bg-sky-200 aspect-square rounded-full flex cursor-pointer items-center justify-center fixed bottom-10 right-5 z-50 text-xl'><IoChatboxOutline /></button>
                 :
                 <button onClick={handleSendMessage} type='button' title='Send' className='w-[60px] aspect-square bg-white hover:bg-zinc-100 cursor-pointer rounded-full flex items-center justify-center fixed bottom-10 right-5 z-50 text-xl'><IoMdSend /></button>
             }

@@ -4,6 +4,7 @@ import NavBar from '../../components/NavBar';
 import MiniModelComponent from './components/MiniModelComponent';
 import VR6ModelComponent from './components/VR6ModelComponent';
 import FooterComponent from '../../components/FooterComponent';
+import ChatBot from '../../components/ChatBot';
 
 const ProductDetailsScreen = () => {
 
@@ -12,6 +13,7 @@ const ProductDetailsScreen = () => {
     return (
         <section>
             <NavBar />
+            <ChatBot />
             {
             (param.id === "1")
             ?

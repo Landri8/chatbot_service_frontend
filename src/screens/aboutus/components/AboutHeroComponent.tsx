@@ -26,8 +26,6 @@ const AboutHeroComponent = () => {
                 </div>
             </div>
         </Template>
-
-        <button type='button' title='Chat' className='w-[60px] aspect-square bg-white rounded-full flex items-center justify-center absolute bottom-10 right-5 text-xl'><IoChatboxOutline /></button>
     </div>
   )
 }

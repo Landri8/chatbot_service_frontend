@@ -1,35 +1,65 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import BlogDetailsComponent from './components/BlogDetailsComponent'
 import FooterComponent from '../../components/FooterComponent'
 import NavBar from '../../components/NavBar'
 import RelatedBlogsComponent from './components/RelatedBlogsComponent'
 import ChatBot from '../../components/ChatBot'
+import { httpResponseHandler } from '../../utils/responseHandlerUtil'
+import ResponseModel from '../../models/response.model'
+import { getBlogDetailsApi } from '../../services/clientService'
+import toast from 'react-hot-toast'
+import BlogInfoModel from '../../models/bloginfo.model'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const BlogDetailsScreen: React.FC = () => {
+
+  const id = useParams().id;
+
+  
+  const [isLoading, setIsLoading] = useState(true);
+  const [editMode, setEditMode] = useState(false);
+  const [blog, setBlog] = useState<BlogInfoModel | null>(null);
+
+  const navigate = useNavigate();
+
+  if (!id) navigate("/");
+
+  useEffect(() => {
+    setIsLoading(true);
+    getBlogDetailsApi(id as string).then(
+      ({data}: {data: ResponseModel}) => {
+
+        const getBlogDetailsResponseData = httpResponseHandler(data);
+        setBlog(getBlogDetailsResponseData);        
+      }
+    ).catch((error: any) => {
+      console.log(error);
+      toast.error("Fetching blog failed")
+    })
+    .finally(() => setIsLoading(false));
+  }, [])
+
   return (
     <section>
         <NavBar />
-        <ChatBot />
-        <BlogDetailsComponent 
-          title='Plans for £2bn AI centre and 750 jobs'
-          content={`
-          Work to construct the UK's largest artificial intelligence (AI) data centre could create up to 750 jobs in a town, it has been claimed.
-
-          Nscale pledged £2bn to build and open the pioneering facility in Loughton, Essex, by 2026.
-          It came after the government announced plans to become a world leader in AI, using it to boost growth and deliver services more efficiently.
-
-          Councillor Stephen Murray hailed the announcement as an "important opportunity" for the town.
-          The data centre was due to be built in Langston Road and would become the first facility of its kind in Essex.
-
-          Murray, an Independent on Epping Forest District Council, said: "Keeping Loughton at the forefront of AI plans is important for all our futures."
-          However, he urged "very careful and detailed consideration" by authorities in the region.    
-          `}
-          date='16 January 2025'
-          imageUrl="/assets/images/blogimg.png"
-        />
-
-        <RelatedBlogsComponent />
-
+        
+        {
+          isLoading 
+          ? 
+          <div className='w-full h-screen flex items-center justify-center'>
+            <span className='loader'></span>
+          </div>
+          :
+          <>
+          <ChatBot />
+          <BlogDetailsComponent 
+            title={blog?.title || ""}
+            content={blog?.content || ""}
+            date={blog?.date || ""}
+            imageUrl={blog?.coverImage || ""}
+          />
+          </>
+        }
         <FooterComponent />
     </section>
   )

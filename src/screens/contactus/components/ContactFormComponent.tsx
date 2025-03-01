@@ -59,6 +59,7 @@ const ContactFormComponent = () => {
   };
 
   const handleGetOTPCode = async () => {
+    setOtpValue('');
     setIsLoadingOTP(true);
     try {
       const {data: responseData} : {data: ResponseModel} = await getVerficationCodeApi({email: emailWatcher});
@@ -85,7 +86,7 @@ const ContactFormComponent = () => {
 
     } catch (e : Error | any) {
       console.log(e);
-      clearInput();
+      setOtpValue('');
       toast.error(e.message || "Wrong OTP code");
     }
   }
@@ -96,18 +97,11 @@ const ContactFormComponent = () => {
 
   const handleCancel = () => {
     setOtpValue('');
-    clearInput();
-    setIsModalOpen(false);
-    setIsLoadingOTP(false);
+    setTimeout(() => {
+      setIsModalOpen(false);
+      setIsLoadingOTP(false);
+    }, 100);
   };
-
-  const clearInput = () => {
-    const inputs = document.getElementsByClassName("ant-input") as HTMLCollectionOf<HTMLInputElement>;
-    console.log(inputs)
-    for (let i = 0; i < inputs.length; i++) {
-      inputs[i].value = "";
-    }
-  }
 
   const onChange = (text: string) => {
     setOtpValue(text); 
@@ -133,8 +127,8 @@ const ContactFormComponent = () => {
         <div className="py-4 flex flex-col items-center">
           <h1 className="w-[70%] text-center font-semibold text-zinc-800 text-[20px]">We've just sent a verification code to your email.</h1>
           <p className="w-[70%] text-center mb-6">Please enter the 6 digit code below</p>
-          <Input.OTP length={6} onChange={onChange} value={otpValue} />
-          <div className="mt-4 text-[12px]">Don't receive the code? <button className="text-[#f59e0b] cursor-pointer" onClick={() => clearInput()}>{isLoadingOTP ? 'Resending' : 'Resend'}</button></div>
+          <input onChange={(e) => onChange(e.target.value)} value={otpValue} type="text" className="w-[70%] text-center py-2 px-4 rounded-[7px] outline-none border bg-white border-gray-300" />
+          <div className="mt-4 text-[12px]">Don't receive the code? <button className="text-[#f59e0b] cursor-pointer" onClick={handleGetOTPCode}>{isLoadingOTP ? 'Resending' : 'Resend'}</button></div>
         </div>
     </Modal>
     <Template classes="py-[100px]">

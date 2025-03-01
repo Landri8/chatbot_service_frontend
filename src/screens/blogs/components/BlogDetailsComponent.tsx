@@ -10,7 +10,7 @@ type Props = {
 
 const BlogDetailsComponent: React.FC<Props> = ({ imageUrl, title, date, content }) => {
   return (
-    <Template classes='mt-20'>
+    <Template classes='mt-20 mb-20'>
         <img className='w-full h-[200px] md:h-[400px] lg:h-[500px] rounded-[18px] md:rounded-[22px] lg:rounded-[28px] object-cover' src={imageUrl} alt="" />
 
         <h1 className='text-center text-[18px] lg:text-[24px] font-medium mb-2 mt-10'>{title}</h1>

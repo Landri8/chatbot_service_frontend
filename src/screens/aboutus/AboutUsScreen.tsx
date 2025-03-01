@@ -9,11 +9,13 @@ import AchievementComponent from '../../components/AchievementComponent'
 import TestimonialsComponent from '../../components/TestimonialsComponent'
 import FAQComponent from '../../components/FAQComponent'
 import FooterComponent from '../../components/FooterComponent'
+import ChatBot from '../../components/ChatBot'
 
 const AboutUsScreen: React.FC = () => {
   return (
     <section>
       <NavBar />
+      <ChatBot />
       <AboutHeroComponent />
       <CompanyDescriptionComponent />
       <ServiceSatisfactionComponent />

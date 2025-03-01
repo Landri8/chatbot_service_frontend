@@ -18,3 +18,7 @@ export const verifyEmailApi = (body: { email: string, otp: string }) => {
 export const getBlogsApi = () => {
     return getRequest(`${baseUrl}/app/blogs`);
 }
+
+export const getBlogDetailsApi = (id: string) => {
+    return getRequest(`${baseUrl}/app/blogs/${id}`);
+}
