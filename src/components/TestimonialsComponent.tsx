@@ -31,25 +31,25 @@ const TestimonialsComponent = () => {
               className="w-full h-[350px]"
           >
               <SwiperSlide className='w-[60%] h-full bg-zinc-100 rounded-[24px] text-center py-10 px-13 swiperSliderTestimonial flex-col items-center'>
-                <div className='w-[80px] aspect-square bg-zinc-200 rounded-full mx-auto'></div>
+                <img className='w-[80px] aspect-square bg-zinc-200 rounded-full mx-auto object-cover' src="/assets/images/jeny.jpg" alt="" />
                 <p className='text-[13px] lg:text-[16px] mb-8 mt-8'>“BlownMind's API allowed us to build a chatbot that perfectly integrates into our existing platform. It's like it was made just for us!”</p>
 
                 <small className='mt-auto'>- John D., CTO at InnovateTech</small>
               </SwiperSlide>
               <SwiperSlide className='w-[60%] h-full bg-zinc-100 rounded-[24px] text-center py-10 px-13 swiperSliderTestimonial flex-col items-center'>
-                <div className='w-[80px] aspect-square bg-zinc-200 rounded-full mx-auto'></div>
+              <img className='w-[80px] aspect-square bg-zinc-200 rounded-full mx-auto object-cover' src="/assets/images/jeny.jpg" alt="" />
                 <p className='text-[13px] lg:text-[16px] mb-8 mt-8'>“BlownMind's API allowed us to build a chatbot that perfectly integrates into our existing platform. It's like it was made just for us!”</p>
 
                 <small className='mt-auto'>- John D., CTO at InnovateTech</small>
               </SwiperSlide>
               <SwiperSlide className='w-[60%] h-full bg-zinc-100 rounded-[24px] text-center py-10 px-13 swiperSliderTestimonial flex-col items-center'>
-                <div className='w-[80px] aspect-square bg-zinc-200 rounded-full mx-auto'></div>
+                <img className='w-[80px] aspect-square bg-zinc-200 rounded-full mx-auto object-cover' src="/assets/images/jeny.jpg" alt="" />
                 <p className='text-[13px] lg:text-[16px] mb-8 mt-8'>“BlownMind's API allowed us to build a chatbot that perfectly integrates into our existing platform. It's like it was made just for us!”</p>
 
                 <small className='mt-auto'>- John D., CTO at InnovateTech</small>
               </SwiperSlide>
               <SwiperSlide className='w-[60%] h-full bg-zinc-100 rounded-[24px] text-center py-10 px-13 swiperSliderTestimonial flex-col items-center'>
-                <div className='w-[80px] aspect-square bg-zinc-200 rounded-full mx-auto'></div>
+                <img className='w-[80px] aspect-square bg-zinc-200 rounded-full mx-auto object-cover' src="/assets/images/jeny.jpg" alt="" />
                 <p className='text-[13px] lg:text-[16px] mb-8 mt-8'>“BlownMind's API allowed us to build a chatbot that perfectly integrates into our existing platform. It's like it was made just for us!”</p>
 
                 <small className='mt-auto'>- John D., CTO at InnovateTech</small>

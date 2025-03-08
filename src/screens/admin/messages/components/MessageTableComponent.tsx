@@ -90,8 +90,8 @@ const MessageTableComponent: React.FC<Props> = ({messageList, setMessageList, is
                                 <td className={`py-3 px-2 text-[14px] ${!message.read ? 'font-bold' : 'font-normal'} text-zinc-600 text-end w-1/12`}>{index + 1}</td>
                                 <td onClick={() => handleClickDetails(message.id)} className={`py-3 px-2 text-[14px] ${!message.read ? 'font-bold' : 'font-normal'} cursor-pointer text-zinc-600 text-end w-2/12 hover:underline`}>{message.id}</td>
                                 <td className={`py-3 px-2 text-[14px] ${!message.read ? 'font-bold' : 'font-normal'} text-zinc-600 w-2/12`}>{message.companyName}</td>
-                                <td className={`py-3 px-2 text-[14px] ${!message.read ? 'font-bold' : 'font-normal'} text-zinc-600 w-2/12`}>{message.firstName + " " + message.lastName}</td>
                                 <td className={`py-3 px-2 text-[14px] ${!message.read ? 'font-bold' : 'font-normal'} text-zinc-600 w-2/12`}>{message.email}</td>
+                                <td className={`py-3 px-2 text-[14px] ${!message.read ? 'font-bold' : 'font-normal'} text-zinc-600 w-2/12`}>{message.firstName + " " + message.lastName}</td>
                                 <td className={`py-3 px-2 text-[14px] ${!message.read ? 'font-bold' : 'font-normal'} text-zinc-600 text-end w-1/12`}>{formatJoinedDate(message.createdAt)}</td>
                                 <td className={`py-3 px-2 w-2/12`}>
                                     <div className='flex items-center justify-end gap-2'>
