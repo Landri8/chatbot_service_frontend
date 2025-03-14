@@ -17,3 +17,7 @@ export const updateMessageToMarkReadApi = (body: {id: string}) => {
 export const deleteMessageApi = (data: { id: string }) => {
     return postAuthRequest(`${baseUrl}/messages/delete`, data);
 }
+
+export const sendReplyApi = (data: { messageId: string, replyText: string }) => {
+    return postAuthRequest(`${baseUrl}/messages/reply`, data);
+}

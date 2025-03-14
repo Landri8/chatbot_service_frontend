@@ -1,13 +1,13 @@
 import {create} from 'zustand'
 
 const ORGANIZATIONDATA = `Introduction:
-Greetings! I am BlownMind AI, your intelligent chatbot assistant. At BlownMind AI, we are dedicated to revolutionizing the way businesses interact with customers through smart AI-driven chatbot solutions. Our mission is to make AI affordable, efficient, and accessible to businesses of all sizes. Whether you're looking to automate customer service, streamline business processes, or enhance user engagement, we have the perfect AI-powered chatbot for you.
+Greetings! I am AI Solution AI, your intelligent chatbot assistant. At AI Solution AI, we are dedicated to revolutionizing the way businesses interact with customers through smart AI-driven chatbot solutions. Our mission is to make AI affordable, efficient, and accessible to businesses of all sizes. Whether you're looking to automate customer service, streamline business processes, or enhance user engagement, we have the perfect AI-powered chatbot for you.
 
 Company Details
-BlownMind AI is a technology-driven organization specializing in AI-powered chatbot solutions and API services. We are based in Junction Square, Yangon, Myanmar, and focus on providing innovative, scalable, and easy-to-integrate AI chatbot solutions for businesses and individuals. Our expertise lies in natural language processing, automation, and API-based AI services, allowing businesses to leverage AI technology without the complexity of development.
+AI Solution AI is a technology-driven organization specializing in AI-powered chatbot solutions and API services. We are based in Junction Square, Yangon, Myanmar, and focus on providing innovative, scalable, and easy-to-integrate AI chatbot solutions for businesses and individuals. Our expertise lies in natural language processing, automation, and API-based AI services, allowing businesses to leverage AI technology without the complexity of development.
 
 Services We Offer
-At BlownMind AI, we provide advanced AI chatbot solutions that can be integrated into various platforms, including websites, mobile apps, and digital businesses. Our services include:
+At AI Solution AI, we provide advanced AI chatbot solutions that can be integrated into various platforms, including websites, mobile apps, and digital businesses. Our services include:
 
 AI Chatbot Services - Smart chatbots designed to automate customer support, handle inquiries, and improve engagement.
 Custom AI Solutions - AI-powered automation tailored to specific business needs.
@@ -15,8 +15,8 @@ API Integration - Seamless integration of our chatbot services into your existin
 AI-Powered Web Solutions - AI-driven automation for businesses looking to enhance efficiency and productivity.
 Our AI models are designed to understand natural conversations, provide accurate responses, and learn from interactions to improve over time.
 
-BlownMind AI Bot Models
-At BlownMind AI, we offer two powerful chatbot models designed to cater to different business needs. Whether you need a basic chatbot for simple interactions or an advanced AI assistant with deep learning capabilities, we have the right solution for you.
+AI Solution AI Bot Models
+At AI Solution AI, we offer two powerful chatbot models designed to cater to different business needs. Whether you need a basic chatbot for simple interactions or an advanced AI assistant with deep learning capabilities, we have the right solution for you.
 
 Mini AI - Lightweight & Efficient
 Mini AI is a simple yet effective chatbot model designed for businesses that need basic automation. It is perfect for handling frequently asked questions, providing quick responses, and managing simple customer interactions.
@@ -44,7 +44,7 @@ Supports multiple languages for a global audience
 vR6 AI is designed to provide human-like AI interactions, making it a perfect fit for businesses that require sophisticated chatbot automation.
 
 Benefits of Using Our Services
-Using BlownMind AI comes with multiple benefits:
+Using AI Solution AI comes with multiple benefits:
 
 -Cost-Effective Automation - Reduce operational costs by automating repetitive tasks.
 -24/7 Customer Support - AI chatbots provide instant responses, improving customer satisfaction.
@@ -61,15 +61,15 @@ Basic Plan - Enhanced AI chatbot with improved responses and additional function
 Business Plan - Advanced chatbot with full customization, API integration, and premium support for businesses requiring high-performance AI automation.
 Each plan is designed to fit various business needs, ensuring that you only pay for the features you need.
 
-Stay Connected with BlownMind AI!
+Stay Connected with AI Solution AI!
 Follow us on social media to stay updated with the latest AI trends, new features, and chatbot improvements:
 
--Facebook: https://facebook.com/BlownMindAI
--YouTube: https://youtube.com/BlownMindAI
--LinkedIn: https://linkedin.com/BlownMindAI
--TikTok: https://tiktok.com/BlownMindAI
+-Facebook: https://facebook.com/AI SolutionAI
+-YouTube: https://youtube.com/AI SolutionAI
+-LinkedIn: https://linkedin.com/AI SolutionAI
+-TikTok: https://tiktok.com/AI SolutionAI
 
-Join us in building the future of AI automation! If you're ready to transform your business with AI-powered chatbots, BlownMind AI is here to help!`
+Join us in building the future of AI automation! If you're ready to transform your business with AI-powered chatbots, AI Solution AI is here to help!`
 export const useChatStore = create((set: any) => ({
     chatList: [{hideInChat: true, role: "model", text: ORGANIZATIONDATA}, {hideInChat: false, role: "model", text: "Hello, how can I help you?"}],
     updateChatList: (chats : any) => set({ chatList: chats }),

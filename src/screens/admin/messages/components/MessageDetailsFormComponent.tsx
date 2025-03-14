@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import MessageInfoModel from '../../../../models/messageInfo.model';
 import { httpResponseHandler } from '../../../../utils/responseHandlerUtil';
 import ResponseModel from '../../../../models/response.model';
-import { deleteMessageApi, getMessageDetailsApi, updateMessageToMarkReadApi } from '../../../../services/messageService';
+import { deleteMessageApi, getMessageDetailsApi, sendReplyApi, updateMessageToMarkReadApi } from '../../../../services/messageService';
 import { Modal } from 'antd';
 import { useAuthStore } from '../../../../store/authStore';
 import { TbCopy } from 'react-icons/tb';
@@ -24,6 +24,9 @@ const MessageDetailsFormComponent = ({id}: {id: string}) => {
     
     const [isLoading, setIsLoading] = useState(true);
     const [isPrinting, setIsPrinting] = React.useState(false);
+    const [isReplying, setIsReplying] = React.useState(false);
+
+    const replyRef = useRef<HTMLTextAreaElement>(null);
 
     const navigate = useNavigate();
 
@@ -81,6 +84,27 @@ const MessageDetailsFormComponent = ({id}: {id: string}) => {
         } finally {
             setIsPrinting(false);
         }
+    }
+
+    const handleReply = async () => {
+        setIsReplying(true);
+        toast.loading("Replying...");
+        try {
+            const {data: responseData}: {data: ResponseModel} = await sendReplyApi({messageId: id, replyText: replyRef.current ? replyRef.current.value : ""});
+            const sendResponseData = httpResponseHandler(responseData);
+            toast.remove();
+            toast.success(responseData.message);
+            navigate('/admin/messages');
+        } catch (e) {
+            toast.remove();
+            toast.error("Failed sending reply");
+            throw e;
+        }
+    }
+
+    const handleCancelReply = () => {
+        replyRef.current!.value = "";
+        setIsReplying(false);
     }
 
     useEffect(() => {
@@ -175,12 +199,34 @@ const MessageDetailsFormComponent = ({id}: {id: string}) => {
                     </div>
 
                     <div className='my-6 w-full h-[0.6px] bg-zinc-200'></div>
+                
+                    {
+                        isReplying ? 
+                        <div className=''>
+                            <textarea ref={replyRef} rows={4} className={`w-full py-4 px-4 text-[13px] rounded-[7px] outline-none border border-zinc-400`} placeholder='Enter your message'></textarea>
+                        </div>
+                        : null
+                    }
 
-                    <div className='flex items-center gap-2'>
-                        <a href={`mailto:${message.email}`} className="h-[36px] border px-4 text-[13px] rounded-[7px] bg-black text-white flex items-center">
-                            <LuReply className='w-4 h-4 mr-2' />
-                            Reply
-                        </a>
+                    <div className='flex items-center gap-2 mt-4'>
+                        {
+                            !isReplying
+                            ?
+                            <button onClick={() => {setIsReplying(true)}} className="h-[36px] border cursor-pointer px-4 text-[13px] rounded-[7px] bg-black text-white flex items-center">
+                                <LuReply className='w-4 h-4 mr-2' />
+                                Reply
+                            </button>
+                            :
+                            <>
+                            <button onClick={handleReply} className="h-[36px] border cursor-pointer px-4 text-[13px] rounded-[7px] bg-black text-white flex items-center">
+                                <LuReply className='w-4 h-4 mr-2' />
+                                Send
+                            </button>
+                            <button onClick={handleCancelReply} className="h-[36px] border cursor-pointer px-4 text-[13px] rounded-[7px] bg-white text-black flex items-center border-zinc-800">
+                                Cancel
+                            </button>
+                            </>
+                        }
                     </div>
                 </div>
             </div>

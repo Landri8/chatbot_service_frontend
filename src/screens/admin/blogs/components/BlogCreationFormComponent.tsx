@@ -81,9 +81,9 @@ const BlogCreationFormComponent = () => {
             </div>
 
             <div className='mb-6'>
-                    <label className='text-[13px] font-semibold mb-2 block'>Title</label>
-                    <input {...register('title')} className={`w-full h-[36px] px-4 text-[13px] rounded-[7px] outline-none border ${errors.title ? 'border-red-300 bg-red-50' : 'border-gray-200'}`} placeholder='Title' />
-                    {errors.title && <p className="text-xs text-red-400 mt-1">{errors.title.message}</p>}
+                <label className='text-[13px] font-semibold mb-2 block'>Title</label>
+                <input {...register('title')} className={`w-full h-[36px] px-4 text-[13px] rounded-[7px] outline-none border ${errors.title ? 'border-red-300 bg-red-50' : 'border-gray-200'}`} placeholder='Title' />
+                {errors.title && <p className="text-xs text-red-400 mt-1">{errors.title.message}</p>}
             </div>
 
             <div className='mb-6'>

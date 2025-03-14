@@ -7,7 +7,7 @@ const FeaturesComponent: React.FC = () => {
     <Template classes='text-center py-[90px] lg:py-[160px]'>
         <HeadingTextComponent content='Introducing our newest model' />
         <div className='mt-20'>
-          <h2 className='text-[clamp(1.5rem,3.3vw,3.2rem)] font-bold'>BlownMind vR6</h2>
+          <h2 className='text-[clamp(1.5rem,3.3vw,3.2rem)] font-bold'>AI Solution vR6</h2>
           <p className='text-[12px] lg:text-[18px] w-full md:w-2/3 mx-auto mt-8 mb-5'>
             Deliver human-like responses and advanced conversational intelligence
             with low latency, exclusively available with the Business Plan

@@ -23,7 +23,7 @@ const VR6ModelComponent = () => {
 
   return (
     <Template classes='text-center'>
-        <ModelOverviewComponent name='BlownMind vR6' description='our flagship AI, built to deliver human-like responses and advanced conversational intelligence' />
+        <ModelOverviewComponent name='AI Solution vR6' description='our flagship AI, built to deliver human-like responses and advanced conversational intelligence' />
         <ModelDescriptionComponent desc='Perfect for enterprises seeking to elevate their customer interactions with cutting-edge intelligence and advanced personalization' />
         <ModelFeaturesComponent features={features} />
     </Template>

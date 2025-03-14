@@ -27,9 +27,9 @@ export const PDFFormat = ({message}: {message: MessageInfoModel}) => {
         <div style="text-align: center; margin-top: 30px;">
             <p style="font-size: 12px; color: #4b5563;">
                 If you need any help, contact us via 
-                <span style="color: #0ea5e9;">info@blownmind.com.mm</span>
+                <span style="color: #0ea5e9;">info@AI Solution.com.mm</span>
             </p>
-            <h1 style="font-weight: bold; margin-top: 10px;">BlownMind</h1>
+            <h1 style="font-weight: bold; margin-top: 10px;">AI Solution</h1>
         </div>
     </div>
     `

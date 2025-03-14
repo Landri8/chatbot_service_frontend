@@ -20,6 +20,8 @@ import MessageListScreen from './screens/admin/messages/MessageListScreen'
 import MessageDetailsScreen from './screens/admin/messages/MessageDetailsScreen'
 import FAQListScreen from './screens/faq/FAQListScreen'
 import FAQDetailsScreen from './screens/faq/FAQDetailsScreen'
+import PaymentScreen from './screens/payment/PaymentScreen'
+import SolutionsScreen from './screens/solutions/SolutionsScreen'
 
 const Router: React.FC = () => {
   return (
@@ -32,6 +34,8 @@ const Router: React.FC = () => {
         <Route path='/aboutus' Component={AboutUsScreen} />
         <Route path='/contactus' Component={ContactUsScreen} />
         <Route path='/event' Component={PromotionEventScreen} />
+        <Route path='/payment' Component={PaymentScreen} />
+        <Route path='/solutions' Component={SolutionsScreen} />
 
         <Route path='/admin' >
           <Route Component={GuestMiddleware} >

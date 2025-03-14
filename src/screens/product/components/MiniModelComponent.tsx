@@ -23,7 +23,7 @@ const MiniModelComponent = () => {
 
   return (
     <Template classes='text-center'>
-        <ModelOverviewComponent name='BlownMind Mini' description='Our standard AI model, designed for efficient and straightforward interactions' />
+        <ModelOverviewComponent name='AI Solution Mini' description='Our standard AI model, designed for efficient and straightforward interactions' />
         <ModelDescriptionComponent desc='lightweight model ideal for basic customer interactions, offering fast and reliable responses' />
         <ModelFeaturesComponent features={features} />
     </Template>
