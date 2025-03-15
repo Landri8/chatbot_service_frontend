@@ -1,29 +1,24 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import NavBar from '../../components/NavBar';
-import MiniModelComponent from './components/MiniModelComponent';
-import VR6ModelComponent from './components/VR6ModelComponent';
-import FooterComponent from '../../components/FooterComponent';
-import ChatBot from '../../components/ChatBot';
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import NavBar from "../../components/NavBar";
+import MiniModelComponent from "./components/MiniModelComponent";
+import VR6ModelComponent from "./components/VR6ModelComponent";
+import FooterComponent from "../../components/FooterComponent";
+import ChatBot from "../../components/ChatBot";
 
 const ProductDetailsScreen = () => {
+  const param = useParams();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  return (
+    <section>
+      <NavBar />
+      <ChatBot />
+      {param.id === "1" ? <MiniModelComponent /> : <VR6ModelComponent />}
+      <FooterComponent />
+    </section>
+  );
+};
 
-    const param = useParams();
-
-    return (
-        <section>
-            <NavBar />
-            <ChatBot />
-            {
-            (param.id === "1")
-            ?
-            <MiniModelComponent />
-            :
-            <VR6ModelComponent />
-            }
-            <FooterComponent />
-        </section>
-    )
-}
-
-export default ProductDetailsScreen
+export default ProductDetailsScreen;

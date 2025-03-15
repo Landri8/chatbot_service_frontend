@@ -25,6 +25,7 @@ const BlogDetailsScreen: React.FC = () => {
   if (!id) navigate("/");
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setIsLoading(true);
     getBlogDetailsApi(id as string).then(
       ({data}: {data: ResponseModel}) => {
@@ -38,6 +39,7 @@ const BlogDetailsScreen: React.FC = () => {
     })
     .finally(() => setIsLoading(false));
   }, [])
+
 
   return (
     <section>

@@ -7,7 +7,7 @@ const FooterComponent: React.FC = () => {
     <section className='bg-zinc-900  pt-[100px] pb-[50px]'>
         <Template>
             <p className='w-full lg:w-2/3 text-white text-[16px] lg:text-[20px] mb-10'>If you encounter any issues with our services, are interested in job opportunities, or wish to discuss business matters, please reach out to us.</p>
-            <button className='px-6 py-2 md:px-12 md:py-3 border border-white text-white rounded-full text-[12px] md:text-[16px]'>Contact us</button>
+            <Link to='/contactus' className='px-6 py-2 md:px-12 md:py-3 border border-white text-white rounded-full text-[12px] md:text-[16px]'>Contact us</Link>
 
             <div className='mt-20 w-full lg:w-1/2 flex flex-col md:flex-row items-start gap-16 text-white'>
                 <div>

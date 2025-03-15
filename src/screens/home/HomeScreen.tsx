@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import HeroComponent from './components/HeroComponent'
 import NavBar from '../../components/NavBar'
 import FeaturesComponent from './components/FeaturesComponent'
@@ -15,6 +15,9 @@ import FooterComponent from '../../components/FooterComponent'
 import ChatBot from '../../components/ChatBot'
 
 const HomeScreen: React.FC = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <section>
       <NavBar />

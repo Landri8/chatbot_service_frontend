@@ -15,7 +15,6 @@ import ResponseModel from "../../../models/response.model";
 import { getVerficationCodeApi, sendMessageApi, verifyEmailApi } from "../../../services/clientService";
 import { httpResponseHandler } from "../../../utils/responseHandlerUtil";
 import { Modal } from "antd";
-import { Input  } from 'antd';
 
 const ContactFormComponent = () => {
   const {

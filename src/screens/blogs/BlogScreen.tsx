@@ -23,6 +23,7 @@ const BlogScreen: React.FC = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setIsLoading(true);
     getBlogsApi()
       .then(({ data }: { data: ResponseModel }) => {
