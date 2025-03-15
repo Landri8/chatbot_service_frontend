@@ -51,7 +51,7 @@ const MessageDetailsFormComponent = ({id}: {id: string}) => {
     
           const deleteResponseData = httpResponseHandler(responseData);
           toast.success(responseData.message);
-          navigate('/admin/faqs');
+          navigate('/admin/messages');
         } catch(error) {
           toast.error("Error deleting message");
           setIsModalOpen(false);
