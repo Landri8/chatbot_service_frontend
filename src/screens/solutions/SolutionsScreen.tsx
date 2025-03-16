@@ -52,6 +52,13 @@ const SolutionsScreen: React.FC = () => {
         "WHO utilizes our AI chatbot to deliver real-time health information and combat misinformation. It provides instant, accurate responses in multiple languages, improving accessibility and public engagement. ",
       brandLogoSrc: "/assets/images/who_logo.png",
     },
+    {
+      logoSrc: "/assets/images/dropbox_org.png",
+      altText: "Dropbox",
+      description:
+        "Dropbox uses our AI chatbot to provide real-time support for users. It offers instant responses to common queries, streamlines customer service, and improves user experience.",
+      brandLogoSrc: "/assets/images/dropbox_logo.png",
+    }
   ];
 
   useEffect(() => {

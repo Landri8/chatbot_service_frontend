@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useMessageStore } from '../../../../store/messageStore';
-import { MessageModel } from '../../../../models/messageInfo.model';
+import MessageInfoModel, { MessageModel } from '../../../../models/messageInfo.model';
 import { getMessageListApi } from '../../../../services/messageService';
 import ResponseModel from '../../../../models/response.model';
 import { httpResponseHandler } from '../../../../utils/responseHandlerUtil';
@@ -16,29 +16,31 @@ const EXTENSION = '.xlsx';
 const MessageListComponent = () => {
 
     const messageStore = useMessageStore(state => state);
-    const [filteredMessageList, setFilteredMessageList] = React.useState<MessageModel[]>([]);
+    const [filteredMessageList, setFilteredMessageList] = React.useState<MessageInfoModel[]>([]);
     const [isLoading, setIsLoading] = React.useState(false);
 
     const handleChange = (value: string) => {
         console.log(messageStore.messageList)
-        setFilteredMessageList(messageStore.messageList.filter((user: MessageModel) => {
-            return user.firstName.toLowerCase().includes(value.toLowerCase()) || 
-            user.lastName.toLowerCase().includes(value.toLowerCase()) || 
-            user.email.toLowerCase().includes(value.toLowerCase()) || 
-            user.companyName.toLowerCase().includes(value.toLowerCase()) || 
-            user.country.toLowerCase().includes(value.toLowerCase()) || 
-            user.phone.toLowerCase().includes(value.toLowerCase());
+        setFilteredMessageList(messageStore.messageList.filter((message: MessageInfoModel) => {
+            return message.firstName.toLowerCase().includes(value.toLowerCase()) || 
+            message.lastName.toLowerCase().includes(value.toLowerCase()) || 
+            message.email.toLowerCase().includes(value.toLowerCase()) || 
+            message.companyName.toLowerCase().includes(value.toLowerCase()) || 
+            message.country.toLowerCase().includes(value.toLowerCase()) || 
+            message.phone.toLowerCase().includes(value.toLowerCase());
         }));
     }
 
     const handleExport = () => {
-        const formattedDataForExcel = messageStore.messageList.map((message: MessageModel, index) => ({
+        const formattedDataForExcel = messageStore.messageList.map((message: MessageInfoModel, index) => ({
             "#": index + 1,
             "Name": message.firstName + " " + message.lastName,
             "Email": message.email,
             "Company Name": message.companyName,
             "Country": message.country,
             "Phone": message.phone,
+            "Job Title": message.jobTitle,
+            "Job Details": message.jobDetails,
             "Sent At": formatJoinedDate(message.createdAt)
         }))
 
@@ -61,6 +63,8 @@ const MessageListComponent = () => {
             { wch: 30 },  // "Company Name"
             { wch: 20 },  // "Country"
             { wch: 20 },  // "Phone"
+            { wch: 40 },  // "Job Title"
+            { wch: 60 },  // "Job Details"
             { wch: 20 }   // "Sent At"
         ];
 
