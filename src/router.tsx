@@ -22,6 +22,7 @@ import FAQListScreen from './screens/faq/FAQListScreen'
 import FAQDetailsScreen from './screens/faq/FAQDetailsScreen'
 import PaymentScreen from './screens/payment/PaymentScreen'
 import SolutionsScreen from './screens/solutions/SolutionsScreen'
+import DashboardScreen from './screens/admin/dashboard/DashboardScreen'
 
 const Router: React.FC = () => {
   return (
@@ -44,6 +45,7 @@ const Router: React.FC = () => {
 
           <Route Component={AuthMiddleware} >
             <Route index element={<WelcomeScreen />} />
+            <Route path="dashboard" element={<DashboardScreen />} />
             <Route path="users" element={<UserListScreen />} />
             <Route path="users/:id" element={<UserDetailsScreen />} />
             <Route path='blogs' element={<BlogListScreen />} />
@@ -52,7 +54,6 @@ const Router: React.FC = () => {
             <Route path='messages/:id' element={<MessageDetailsScreen />} />
             <Route path='faqs' element={<FAQListScreen />} />
             <Route path='faqs/:id' element={<FAQDetailsScreen />} />
-            
           </Route>
         </Route>
     </Routes>

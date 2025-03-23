@@ -9,6 +9,7 @@ import { logoutApi } from "../services/authService";
 import ResponseModel from "../models/response.model";
 import toast from "react-hot-toast";
 import { httpResponseHandler } from "../utils/responseHandlerUtil";
+import { MdDashboard } from "react-icons/md";
 
 const AuthMiddleware = () => {
   const {authInfo, updateAuthInfo} = useAuthStore((state) => state);
@@ -48,6 +49,13 @@ const AuthMiddleware = () => {
             <nav className="flex-1 px-4">
                 <div className="space-y-1">
                 <NavLink
+                    to="dashboard"
+                    className="flex items-center gap-3 px-3 py-2 text-sm text-gray-700 rounded-md hover:bg-gray-50"
+                >
+                    <MdDashboard className="w-5 h-5" />
+                    Dashboard
+                </NavLink>
+                <NavLink
                     to="users"
                     className="flex items-center gap-3 px-3 py-2 text-sm text-gray-700 rounded-md hover:bg-gray-50"
                 >
@@ -82,8 +90,8 @@ const AuthMiddleware = () => {
 
                 <div className="p-4 mt-2">
                     <div className="p-4 bg-zinc-100 rounded-md">
-                        <div className="text-sm font-medium">{authInfo.user.name}</div>
-                        <div className="text-xs text-gray-500">{authInfo.user.email}</div>
+                        <div className="text-sm font-medium truncate">{authInfo.user.name}</div>
+                        <div className="text-xs text-gray-500 truncate">{authInfo.user.email}</div>
                     </div>
                     <button onClick={handleLogout} className="py-2 cursor-pointer text-[12px] px-4 bg-red-200 text-red-400 font-medium rounded-md w-full mt-2">Logout</button>
                 </div>

@@ -2,6 +2,10 @@ import { getAuthRequest, postAuthRequest } from "./https";
 
 const baseUrl = import.meta.env.VITE_API_URL;
 
+export const getMessageStatisticsApi = () => {
+    return getAuthRequest(`${baseUrl}/messages/statistics`);
+}
+
 export const getMessageListApi = () => {
     return getAuthRequest(`${baseUrl}/messages`);
 }
